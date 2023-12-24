@@ -1,7 +1,7 @@
 // CREATE SERVER
 const express = require("express"); 
 const app = express();
-const _PORT = process.env.PORT;
+const _PORT = process.env.PORT || 3000;
 /* ===NOT IMPORTENT BUT USE IT WHEN YOU FIND ERROR IN SERVER=== */
 const cors = require("cors");
 app.use(cors());
@@ -12,13 +12,16 @@ const jwt = require('jsonwebtoken')
 
 // CONNECT TO DB
 const userName = process.env.USERNAME,
-  password = process.env.PASSWORD, 
+  password = "zkpDTW0FJYBUUGyl", 
   database = process.env.DATABASE;
 
 const mongoose = require("mongoose");
 mongoose.connect(
-  `mongodb+srv://${userName}:${password}@cluster0.spnnbqz.mongodb.net/${database}?retryWrites=true&w=majority`
-);
+  `mongodb+srv://rayenn38:${password}@cluster0.spnnbqz.mongodb.net/
+  `
+).then(() => {
+  console.log(`MongoDB Connected Successfully at ${database}`);
+});
 
 /* Models */
 // IMPORT USER MODEL (DATA)
